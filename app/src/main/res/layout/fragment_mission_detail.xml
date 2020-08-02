@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="8dp"
+    android:layout_marginEnd="8dp"
+    android:layout_marginStart="8dp"
+    android:layout_marginTop="8dp"
+    android:theme="@style/Theme.MaterialComponents.Light"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="8dp">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <LinearLayout
+        android:id="@+id/layout_detail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+    <TextView
+        android:id="@+id/txt_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="name"
+        android:textColor="#313131"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/txt_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txt_name"
+        android:padding="10dp"
+        android:text="id"
+        android:textColor="#808080"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/txt_manuf"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txt_id"
+        android:padding="10dp"
+        android:text="manufacturers"
+        android:textColor="#808080"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/txt_payload"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txt_manuf"
+        android:padding="10dp"
+        android:text="payload_ids"
+        android:textColor="#808080"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/txt_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txt_payload"
+        android:padding="10dp"
+        android:text="description"
+        android:textColor="#313131"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/txt_wiki"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txt_desc"
+        android:padding="10dp"
+        android:text="wiki"
+        android:textColor="#3F51B5"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/txt_web"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txt_wiki"
+        android:padding="10dp"
+        android:text="web"
+        android:textColor="#3F51B5"
+        android:textSize="15sp" />
+
+    <TextView
+        android:id="@+id/txt_twitter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txt_web"
+        android:padding="10dp"
+        android:text="twitter"
+        android:textColor="#3F51B5"
+        android:textSize="15sp" />
+    </LinearLayout>
+    </ScrollView>
+</com.google.android.material.card.MaterialCardView>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_missions"
+        android:icon="@drawable/ic_mission"
+        android:title="@string/title_missions" />
+
+    <item
+        android:id="@+id/navigation_ships"
+        android:icon="@drawable/ic_ship"
+        android:title="@string/title_ships" />
+
+    <item
+        android:id="@+id/navigation_rockets"
+        android:icon="@drawable/ic_rocket"
+        android:title="@string/title_rockets" />
+
+</menu>

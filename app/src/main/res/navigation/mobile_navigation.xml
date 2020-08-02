@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_missions">
+
+    <fragment
+        android:id="@+id/navigation_missions"
+        android:name="com.teamtreehouse.spacex.ui.missions.MissionsFragment"
+        android:label="@string/title_missions"
+        tools:layout="@layout/fragment_missions">
+        <action
+            android:id="@+id/action_navigation_missions_to_missionDetailFragment"
+            app:destination="@id/missionDetailFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_ships"
+        android:name="com.teamtreehouse.spacex.ui.ships.ShipsFragment"
+        android:label="@string/title_ships"
+        tools:layout="@layout/fragment_ships" />
+
+    <fragment
+        android:id="@+id/navigation_rockets"
+        android:name="com.teamtreehouse.spacex.ui.rockets.RocketsFragment"
+        android:label="@string/title_rockets"
+        tools:layout="@layout/fragment_rockets" />
+
+    <fragment
+        android:id="@+id/missionDetailFragment"
+        android:name="com.teamtreehouse.spacex.ui.missions.detail.MissionDetailFragment"
+        android:label="@string/title_detail_mission"
+        tools:layout="@layout/fragment_mission_detail" >
+        <action
+            android:id="@+id/action_missionDetailFragment_to_navigation_missions"
+            app:destination="@id/navigation_missions" />
+    </fragment>
+</navigation>

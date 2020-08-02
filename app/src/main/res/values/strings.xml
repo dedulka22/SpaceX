@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">SpaceX</string>
+    <string name="title_missions">Missions</string>
+    <string name="title_detail_mission">Detail mission</string>
+    <string name="title_rockets">Rockets</string>
+    <string name="title_ships">Ships</string>
+
+    <!--Missions-->
+    <string name="mission_id">ID: %s</string>
+    <string name="mission_manuf">Manufacturers: %s</string>
+    <string name="mission_payload">Payload IDs: %s</string>
+
+    <!--Detail Mission-->
+    <string name="m_desc">Description: %s</string>
+    <string name="m_web">Web: %s</string>
+    <string name="m_twitter">Twitter: %s</string>
+    <string name="m_wiki">Wikipedia: %s</string>
+
+    <!--Rockets-->
+    <string name="rocket_cost_per_launch">Cost Per Launch: $%s</string>
+    <string name="rocket_first_flight">First Flight: %s</string>
+    <string name="rocket_height">Height: %s meters (%s feet)</string>
+    <string name="rocket_diameter">Diameter: %s meters (%s feet)</string>
+
+</resources>
