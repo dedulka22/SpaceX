@@ -19,9 +19,15 @@
         android:layout_margin="16dp"
         android:orientation="vertical">
 
+        <ImageView
+            android:id="@+id/img_pic"
+            android:layout_width="match_parent"
+            android:layout_height="173dp"
+            android:visibility="gone"/>
+
         <TextView
             android:id="@+id/txt_name"
-            android:layout_width="fill_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
             android:text="name"
@@ -30,66 +36,34 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/txt_status"
+            android:id="@+id/txt_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="status"
+            tools:text="id"
             android:textColor="#808080"
             android:textSize="18sp" />
 
         <TextView
-            android:id="@+id/txt_country"
+            android:id="@+id/txt_role"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="Country"
+            tools:text="Role"
             android:textColor="#808080"
             android:textSize="18sp"/>
 
         <TextView
-            android:id="@+id/txt_company"
+            android:id="@+id/txt_year_built"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="Company"
+            tools:text="Year built"
             android:textColor="#808080"
             android:textSize="18sp"/>
 
         <TextView
-            android:id="@+id/txt_costPerLaunch"
+            android:id="@+id/txt_ship_type"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="Cost per launch"
-            android:textColor="#808080"
-            android:textSize="18sp"/>
-
-        <TextView
-            android:id="@+id/txt_rocketHeight"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:text="Height"
-            android:textColor="#808080"
-            android:textSize="18sp"/>
-
-        <TextView
-            android:id="@+id/txt_rocketDiameter"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:text="Diameter"
-            android:textColor="#808080"
-            android:textSize="18sp"/>
-
-        <TextView
-            android:id="@+id/txt_rocketMass"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:text="Mass"
-            android:textColor="#808080"
-            android:textSize="18sp"/>
-
-        <TextView
-            android:id="@+id/txt_firstFlight"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:text="First flight"
+            tools:text="Ship type"
             android:textColor="#808080"
             android:textSize="18sp"/>
 

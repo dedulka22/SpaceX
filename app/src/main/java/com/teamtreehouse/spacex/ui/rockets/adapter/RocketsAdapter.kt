@@ -1,15 +1,12 @@
 package com.teamtreehouse.spacex.ui.rockets.adapter
 
-import android.provider.Settings.Global.getString
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.teamtreehouse.spacex.data.model.Rocket
 import com.teamtreehouse.spacex.R.*
-import kotlinx.android.synthetic.main.item_mission.view.*
-import kotlinx.android.synthetic.main.item_mission.view.txt_id
-import kotlinx.android.synthetic.main.item_mission.view.txt_name
 import kotlinx.android.synthetic.main.item_rocket.view.*
 import java.text.DecimalFormat
 import java.text.NumberFormat
@@ -24,7 +21,23 @@ class RocketsAdapter(private var rockets: ArrayList<Rocket>
         fun bind(item: Rocket) {
             itemView.apply {
                 txt_name.text = item.name
-                txt_id.text = String.format(context.getString(string.mission_id), item.id)
+
+                item.active?.let {
+                    if (it) {
+                        txt_status.text = String.format(
+                            context.getString(string.rocket_status),
+                            context.getString(string.status_active)
+                        )
+                        txt_status.setTextColor(Color.GREEN)
+                    } else {
+                        txt_status.text = String.format(
+                            context.getString(string.rocket_status),
+                            context.getString(string.status_inactive)
+                        )
+                        txt_status.setTextColor(Color.RED)
+                    }
+                }
+
                 txt_costPerLaunch.text = String.format(
                     context.getString(string.rocket_cost_per_launch),
                     formatCost(item.cost ?: 0))
@@ -32,6 +45,22 @@ class RocketsAdapter(private var rockets: ArrayList<Rocket>
                     context.getString(string.rocket_height),
                     item.height?.meters,
                     item.height?.feet)
+                txt_rocketDiameter.text = String.format(
+                    context.getString(string.rocket_diameter),
+                    item.diameter?.meters,
+                    item.diameter?.feet)
+                txt_rocketMass.text = String.format(
+                    context.getString(string.rocket_mass),
+                    item.mass?.kg)
+                txt_firstFlight.text = String.format(
+                    context.getString(string.rocket_first_flight),
+                    item.flight)
+                txt_country.text = String.format(
+                    context.getString(string.rocket_country),
+                    item.country)
+                txt_company.text = String.format(
+                    context.getString(string.rocket_company),
+                    item.company)
             }
         }
     }

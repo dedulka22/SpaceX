@@ -1,14 +1,10 @@
 package com.teamtreehouse.spacex.ui.missions
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
-import androidx.lifecycle.viewModelScope
-import com.teamtreehouse.spacex.data.model.Mission
 import com.teamtreehouse.spacex.data.repository.SpaceXRepository
 import com.teamtreehouse.spacex.utils.Resource
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import java.lang.Exception
 
 class MissionsViewModel(private val spaceXRepository: SpaceXRepository) : ViewModel() {

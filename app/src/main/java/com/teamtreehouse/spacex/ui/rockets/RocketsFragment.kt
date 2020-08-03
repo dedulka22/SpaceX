@@ -4,9 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import android.widget.Toast
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -14,21 +12,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.teamtreehouse.spacex.R
 import com.teamtreehouse.spacex.data.api.ApiHelper
 import com.teamtreehouse.spacex.data.api.RetrofitBuilder
-import com.teamtreehouse.spacex.data.model.Mission
 import com.teamtreehouse.spacex.data.model.Rocket
 import com.teamtreehouse.spacex.ui.base.BaseFragment
 import com.teamtreehouse.spacex.ui.base.ViewModelFactory
-import com.teamtreehouse.spacex.ui.missions.MissionsViewModel
-import com.teamtreehouse.spacex.ui.missions.adapter.MissionsAdapter
 import com.teamtreehouse.spacex.ui.rockets.adapter.RocketsAdapter
 import com.teamtreehouse.spacex.utils.Status
-import kotlinx.android.synthetic.main.fragment_missions.*
 import kotlinx.android.synthetic.main.fragment_rockets.*
 
 class RocketsFragment : BaseFragment() {
-
-    private lateinit var rocketsViewModel: RocketsViewModel
-    private lateinit var adapter: RocketsAdapter
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -54,14 +45,14 @@ class RocketsFragment : BaseFragment() {
 
     private fun setupUI() {
         recyclerview_rocket.layoutManager = LinearLayoutManager(context)
-        adapter = RocketsAdapter(arrayListOf())
+        adapterR = RocketsAdapter(arrayListOf())
         recyclerview_rocket.addItemDecoration(
             DividerItemDecoration(
                 recyclerview_rocket.context,
                 (recyclerview_rocket.layoutManager as LinearLayoutManager).orientation
             )
         )
-        recyclerview_rocket.adapter = adapter
+        recyclerview_rocket.adapter = adapterR
     }
 
     private fun setupObservers() {
@@ -89,7 +80,7 @@ class RocketsFragment : BaseFragment() {
     }
 
     private fun retrieveList(rocket: List<Rocket>) {
-        adapter.apply {
+        adapterR.apply {
             addDataR(rocket)
             notifyDataSetChanged()
         }

@@ -23,9 +23,6 @@ import kotlinx.android.synthetic.main.fragment_missions.*
 
 class MissionsFragment : BaseFragment(), OnMissionItemClicked {
 
-    private lateinit var missionsViewModel: MissionsViewModel
-    private lateinit var adapter: MissionsAdapter
-
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
@@ -50,14 +47,14 @@ class MissionsFragment : BaseFragment(), OnMissionItemClicked {
 
     private fun setupUI() {
         recyclerview_mission.layoutManager = LinearLayoutManager(context)
-        adapter = MissionsAdapter(arrayListOf())
+        adapterM = MissionsAdapter(arrayListOf())
         recyclerview_mission.addItemDecoration(
             DividerItemDecoration(
                 recyclerview_mission.context,
                 (recyclerview_mission.layoutManager as LinearLayoutManager).orientation
             )
         )
-        recyclerview_mission.adapter = adapter
+        recyclerview_mission.adapter = adapterM
     }
 
     private fun setupObservers() {
@@ -85,7 +82,7 @@ class MissionsFragment : BaseFragment(), OnMissionItemClicked {
     }
 
     private fun retrieveList(mission: List<Mission>) {
-        adapter.apply {
+        adapterM.apply {
             addDataM(mission)
             notifyDataSetChanged()
         }

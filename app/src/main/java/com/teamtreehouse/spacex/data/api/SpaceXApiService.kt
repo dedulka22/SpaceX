@@ -3,8 +3,6 @@ package com.teamtreehouse.spacex.data.api
 import com.teamtreehouse.spacex.data.model.Mission
 import com.teamtreehouse.spacex.data.model.Rocket
 import com.teamtreehouse.spacex.data.model.Ship
-import retrofit2.Call
-import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
 

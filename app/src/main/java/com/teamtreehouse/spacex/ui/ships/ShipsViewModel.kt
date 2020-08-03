@@ -1,7 +1,5 @@
 package com.teamtreehouse.spacex.ui.ships
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.liveData
 import com.teamtreehouse.spacex.data.repository.SpaceXRepository

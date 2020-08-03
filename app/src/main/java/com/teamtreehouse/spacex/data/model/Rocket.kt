@@ -8,7 +8,6 @@ import java.util.*
 @Parcelize
 data class Rocket(
     @SerializedName("rocket_name") var name: String?,
-    @SerializedName("id") var id: String?,
     @SerializedName("active") var active: Boolean?,
     @SerializedName("cost_per_launch") var cost: Int?,
     @SerializedName("first_flight") var flight: Date?,
