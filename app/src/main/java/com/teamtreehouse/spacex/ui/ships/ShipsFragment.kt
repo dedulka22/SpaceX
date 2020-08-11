@@ -1,9 +1,9 @@
 package com.teamtreehouse.spacex.ui.ships
 
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -19,13 +19,17 @@ import com.teamtreehouse.spacex.ui.ships.adapter.ShipsAdapter
 import com.teamtreehouse.spacex.utils.Status
 import kotlinx.android.synthetic.main.fragment_ships.*
 
+
 class ShipsFragment : BaseFragment() {
+
+    private var sortByAsc: Boolean = false
 
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
+        setHasOptionsMenu(true)
         return inflater.inflate(R.layout.fragment_ships, container, false)
     }
 
@@ -33,7 +37,62 @@ class ShipsFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         setupViewModel()
         setupUI()
-        setupObservers()
+        setupObservers(sortByAsc)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.filter_ship_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.filter -> {
+                showSortDialog()
+                return true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    private fun showSortDialog() {
+        val options  = arrayOf("Descending", "Ascending")
+        var enabled: Boolean = false
+
+        val builder = AlertDialog.Builder(context)
+        builder.setTitle(R.string.sortByYear)
+            .setSingleChoiceItems(
+                options,
+                -1,
+                DialogInterface.OnClickListener { dialog, which ->
+                    when (which) {
+                        0 -> {
+                            sortByAsc = false
+                            enabled = true
+                            }
+                        1 -> {
+                            sortByAsc = true
+                            enabled = true
+                            }
+                    }
+                })
+
+
+        builder.setPositiveButton(
+            R.string.OK
+        ) { dialog, which ->
+            setupObservers(sortByAsc)
+        }
+        builder.setNegativeButton(R.string.Cancel, null)
+
+        val dialog = builder.create()
+
+        dialog.setOnShowListener {
+            dialog.getButton(AlertDialog.BUTTON_POSITIVE).isEnabled = enabled
+        }
+
+        dialog.show()
     }
 
     private fun setupViewModel() {
@@ -55,15 +114,20 @@ class ShipsFragment : BaseFragment() {
         recyclerview_ship.adapter = adapterS
     }
 
-    private fun setupObservers() {
+    private fun setupObservers(sortByAsc: Boolean) {
         shipsViewModel.fetchShips().observe(viewLifecycleOwner, Observer {
             it?.let { resource ->
                 when (resource.status) {
                     Status.SUCCESS -> {
                         recyclerview_ship.visibility = View.VISIBLE
                         hideProgressBar()
-                        resource.data?.let {
-                                ships -> retrieveList(ships) }
+                        resource.data?.let { ships ->
+                            if (sortByAsc) {
+                                retrieveList(ships.sortedBy { item -> item.year_built })
+                            } else {
+                                retrieveList(ships.sortedByDescending { item -> item.year_built })
+                            }
+                        }
                     }
                     Status.ERROR -> {
                         recyclerview_ship.visibility = View.VISIBLE

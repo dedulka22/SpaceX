@@ -34,9 +34,15 @@ class ShipsAdapter(private var ships: ArrayList<Ship>)
                     } else
                         txt_role.visibility = View.GONE
                 }
-                txt_year_built.text = String.format(
-                    context.getString(R.string.ship_year_built),
-                    item.year_built)
+                item.year_built?.let {
+                    if (it != null) {
+                        txt_year_built.visibility = View.VISIBLE
+                        txt_year_built.text = String.format(
+                            context.getString(R.string.ship_year_built),
+                            item.year_built)
+                    }
+                }
+
                 txt_ship_type.text = String.format(
                     context.getString(R.string.ship_type),
                     item.ship_type)

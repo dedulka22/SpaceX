@@ -32,4 +32,7 @@
     <string name="ship_role">Role: %s</string>
     <string name="ship_year_built">Year built: %s</string>
     <string name="ship_type">Ship type: %s</string>
+    <string name="sortByYear">Sort By Year built: </string>
+    <string name="OK">OK</string>
+    <string name="Cancel">Cancel</string>
 </resources>
