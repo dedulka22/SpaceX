@@ -22,7 +22,8 @@ import kotlinx.android.synthetic.main.fragment_ships.*
 
 class ShipsFragment : BaseFragment() {
 
-    private var sortByAsc: Boolean = false
+    private var isSortedByAsc: Boolean = false
+    private var flag: Boolean = false
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -37,7 +38,7 @@ class ShipsFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         setupViewModel()
         setupUI()
-        setupObservers(sortByAsc)
+        setupObservers(isSortedByAsc)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -58,7 +59,6 @@ class ShipsFragment : BaseFragment() {
 
     private fun showSortDialog() {
         val options  = arrayOf("Descending", "Ascending")
-        var enabled: Boolean = false
 
         val builder = AlertDialog.Builder(context)
         builder.setTitle(R.string.sortByYear)
@@ -68,31 +68,33 @@ class ShipsFragment : BaseFragment() {
                 DialogInterface.OnClickListener { dialog, which ->
                     when (which) {
                         0 -> {
-                            sortByAsc = false
-                            enabled = true
-                            }
+                            onCheckedChanged(dialog as AlertDialog,true)
+                        }
                         1 -> {
-                            sortByAsc = true
-                            enabled = true
-                            }
+                            isSortedByAsc = true
+                            onCheckedChanged(dialog as AlertDialog,true)
+                        }
                     }
                 })
 
-
         builder.setPositiveButton(
-            R.string.OK
-        ) { dialog, which ->
-            setupObservers(sortByAsc)
+            R.string.OK) { dialog, which ->
+            flag = true
+            setupObservers(isSortedByAsc)
         }
         builder.setNegativeButton(R.string.Cancel, null)
 
         val dialog = builder.create()
 
         dialog.setOnShowListener {
-            dialog.getButton(AlertDialog.BUTTON_POSITIVE).isEnabled = enabled
+            onCheckedChanged(dialog as AlertDialog,false)
         }
 
         dialog.show()
+    }
+
+    private fun onCheckedChanged(dialog: AlertDialog, enabled: Boolean) {
+        dialog.getButton(AlertDialog.BUTTON_POSITIVE).isEnabled = enabled
     }
 
     private fun setupViewModel() {
@@ -114,7 +116,9 @@ class ShipsFragment : BaseFragment() {
         recyclerview_ship.adapter = adapterS
     }
 
-    private fun setupObservers(sortByAsc: Boolean) {
+    private fun selector(s: Ship): Int? = s.year_built
+
+    private fun setupObservers(isSortedByAsc: Boolean) {
         shipsViewModel.fetchShips().observe(viewLifecycleOwner, Observer {
             it?.let { resource ->
                 when (resource.status) {
@@ -122,10 +126,14 @@ class ShipsFragment : BaseFragment() {
                         recyclerview_ship.visibility = View.VISIBLE
                         hideProgressBar()
                         resource.data?.let { ships ->
-                            if (sortByAsc) {
-                                retrieveList(ships.sortedBy { item -> item.year_built })
-                            } else {
-                                retrieveList(ships.sortedByDescending { item -> item.year_built })
+                            if (flag) {
+                                if (isSortedByAsc) {
+                                    retrieveList(ships.sortedBy {selector(it)})
+                                } else {
+                                    retrieveList(ships.sortedByDescending {selector(it)})
+                                }
+                            } else if (!flag) {
+                                retrieveList(ships)
                             }
                         }
                     }
